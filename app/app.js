@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('mainApp', [
+var app = angular.module('myApp', [
   'ngResource',
   'ui.router',
 ]);
@@ -38,7 +38,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         controller: 'OAuthCallbackController'
       })
   
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/');
 
   $locationProvider.html5Mode(true);
 });
@@ -181,14 +181,14 @@ app.controller('OAuthCallbackController', function($scope, $location, $http) {
       "client_secret": "tz3pHQoeU7wv8YH6"
     };
 
-    /*var url = "https://www.linkedin.com/uas/oauth2/authorization";
+    var url = "https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=" + $scope.code + "&redirect_uri=http://localhost:8000/oauth-callback&client_id=775i5ch3fl3s4c&client_secret=tz3pHQoeU7wv8YH6";
      $http.get(url).then(function(response) {
      console.log(response);
      });
 
-    window.location.href = "https://www.linkedin.com/uas/oauth2/authorization";
+    window.location.href = "https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=" + $scope.code + "&redirect_uri=http://localhost:8000/oauth-callback&client_id=775i5ch3fl3s4c&client_secret=tz3pHQoeU7wv8YH6";
 
-    /*$http({
+    $http({
      method: 'POST',
      url: 'https://www.linkedin.com/uas/oauth2/accessToken',
      headers: {
@@ -207,8 +207,7 @@ app.controller('OAuthCallbackController', function($scope, $location, $http) {
      }, function(response) {
      // error
      console.log(response);
-     });*/
-
+     });
   }
 
 });
